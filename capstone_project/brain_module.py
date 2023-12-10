@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import os
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 
-class ChatGPT:
-    """A class to interact with OpenAI's ChatGPT model."""
+class AudioAnalysis:
+    """A class for audio analysis using the OpenAI API."""
 
     def __init__(self):
         # Load environment variables from the .env file
@@ -15,33 +15,55 @@ class ChatGPT:
         self.api_key = os.getenv("OPENAI_API_KEY")
 
         # Set the retrieved API key for the OpenAI library
-        openai.api_key = self.api_key
+        OpenAI.api_key = self.api_key
 
-        # A constant to describe the role or behavior of the chatbot
-        self.MAIN_ROLE = "This is the behavior of chatGPT"
+        # Directory path for audio files
+        self.media_path = "resources/"
 
-    def request_openai(self, message, role="system"):
+    def show_audio_with_controls(self, file_path):
         """
-        Make a request to the OpenAI API.
+        Display audio controls in Jupyter Notebook.
 
         Args:
-        - message (str): The message to be sent to the OpenAI API.
-        - role (str, optional): The role associated with the message. Defaults to "system".
-
-        Returns:
-        - str: The response content from the OpenAI API.
+        - file_path (str): Path to the audio file.
         """
+        from IPython.display import HTML, display
+        display(HTML("<audio controls><source src={} type='audio/mpeg'></audio>".format(file_path)))
 
-        # Create a chat completion with the provided message and role
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": role, "content": message}]
+    def analyze_audio(self, file_path):
+        """
+        Analyze audio file using the OpenAI API.
+
+        Args:
+        - file_path (str): Path to the audio file.
+        """
+        # Show audio controls
+        self.show_audio_with_controls(file_path)
+
+        # Get transcript
+        transcript = OpenAI.audio.transcriptions.create(
+            model="whisper-1",
+            file=open(file_path, "rb"),
+            language="en"
         )
 
-        # Return the message content from the API response
-        return response["choices"][0]["message"]["content"]
+        # Display transcript
+        print("Transcript:", transcript.text)
+
+        # Evaluate sentiment
+        evaluation_response = OpenAI.chat.completions.create(
+            model="gpt-3.5-turbo-1106",
+            messages=[
+                {"role": "system", "content": "You are a skilled Message evaluator."},
+                {"role": "user", "content": f"Evaluate the following text sentiment:\n\n{transcript.text}"}
+            ]
+        )
+
+        # Display model evaluation
+        model_response = evaluation_response.choices[0].message.content
+        print(f"Model Evaluation: {model_response}")
 
 # If you need to test or use this directly, you can do:
 # if __name__ == "__main__":
-#     chat_gpt = ChatGPT()
-#     print(chat_gpt.request_openai("Hello!"))
+#     audio_analysis = AudioAnalysis()
+#     audio_analysis.analyze_audio("your_audio_file.mp3")
