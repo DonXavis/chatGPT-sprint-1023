@@ -1,5 +1,4 @@
 import os
-from openai import OpenAI
 from brain_module import ChatGPT
 
 # Set the directory path
