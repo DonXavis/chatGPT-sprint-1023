@@ -1,60 +1,82 @@
+OpenAI Audio Insight API
 
-# Table of Contents
+The OpenAI Audio Insight API allows users to analyze audio files, providing transcriptions and sentiment evaluations. The API leverages OpenAI's powerful language models for accurate and insightful results.
+Getting Started
+Prerequisites
 
-1.  [ChatGPT-Sprint](#org456b8a5)
-    1.  [Getting Started](#org434262c)
-    2.  [The Challenge](#org225987d)
-    3.  [Resources](#org0a0f0b0)
-    4.  [Contributing](#orgbb6c879)
-    5.  [License](#orga77384e)
+Make sure you have the following prerequisites before using the OpenAI Audio Insight API:
 
+    Python installed on your machine
+    OpenAI API key
 
+Installation
 
-<a id="org456b8a5"></a>
+    Clone the repository:
 
-# ChatGPT-Sprint
+    bash
 
-Welcome to &ldquo;ChatGPT-Sprint&rdquo;. This is your gateway to understanding and integrating the ChatGPT API. By the end of this sprint, you&rsquo;ll have built a unique tool that taps into the power of ChatGPT, merging creativity with technical know-how.
+git clone https://github.com/your-username/openai-audio-insight-api.git
+cd openai-audio-insight-api
 
+Install dependencies:
 
-<a id="org434262c"></a>
+bash
 
-## Getting Started
+pip install -r requirements.txt
 
-Before diving into the challenge, ensure you have the following prerequisites:
+Set your OpenAI API key:
 
--   Basic knowledge of Python (or your preferred language supported by the ChatGPT API).
--   An environment set up for development (e.g., Python environment, code editor).
--   An OpenAI API key (obtainable from [OpenAI&rsquo;s platform](https://www.openai.com/)).
+bash
 
+    export OPENAI_API_KEY=your-api-key
 
-<a id="org225987d"></a>
+Usage
 
-## The Challenge
+    Add your audio files to the resources/ directory.
 
-Your task is to create an application or tool that effectively utilizes the ChatGPT API. The specifics of the project are up to you, but remember, the goal is innovation and effective integration.
+    Run the API:
 
-For detailed project guidelines, refer to [README](./capstone_project/README.md)
+    bash
 
+python audio_api.py
 
-<a id="org0a0f0b0"></a>
+Access the API:
 
-## Resources
+    Open your browser and go to http://127.0.0.1:5000/
 
--   [ChatGPT Official Documentation](https://beta.openai.com/docs/)
--   [OpenAI&rsquo;s API pricing and rate limits](https://openai.com/pricing)
+    Use the following curl command for analysis:
 
+    bash
 
-<a id="orgbb6c879"></a>
+        curl -X POST -H "Content-Type: application/json" -d '{"file_path": "path/to/your/audio/file.mp3"}' http://127.0.0.1:5000/analyze
 
-## Contributing
+API Endpoints
+POST /analyze
 
-We value your contributions! If you have suggestions, corrections, or improvements, please submit a pull request or open an issue. Ensure you follow our contribution guidelines listed in [CONTRIBUTING](./CONTRIBUTING.md)
+Analyzes the provided audio file and returns a JSON response with transcription and sentiment evaluation.
+Request Body
 
+json
 
-<a id="orga77384e"></a>
+{
+  "file_path": "path/to/your/audio/file.mp3"
+}
 
-## License
+Response
 
-This project is licensed under the MIT License - see the [Licence](./LICENSE.md) file for details.
+json
 
+{
+  "transcript": "Transcription of the audio content.",
+  "model_evaluation": "Sentiment evaluation based on the audio content."
+}
+
+Available Audio Files
+
+Upon running the API, it will list all available audio files in the resources/ directory, prompting the user to select a file for analysis.
+User Interaction
+
+The API allows for user interaction, prompting the user to select an audio file, analyzing it, and providing the option to analyze additional files.
+See You Soon!
+
+Feel free to explore the capabilities of the OpenAI Audio Insight API. If you have any questions or feedback, please let us know. See you SpaceCowboy!
