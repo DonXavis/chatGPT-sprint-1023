@@ -1,7 +1,7 @@
-OpenAI Audio Analysis with Jupyter Notebook
+OpenAI Audio InsightAPI Documentation
 Introduction
 
-The OpenAI Audio Analysis with Jupyter Notebook API allows users to leverage cutting-edge natural language processing and machine learning models for audio transcription and sentiment analysis. This documentation provides a comprehensive guide on how to use the API within a Jupyter Notebook environment.
+The OOpenAI Audio InsightAPI allows users to leverage cutting-edge natural language processing and machine learning models for audio transcription and sentiment analysis. This documentation provides a comprehensive guide on how to use the API within a Jupyter Notebook environment.
 Table of Contents
 
     Getting Started
