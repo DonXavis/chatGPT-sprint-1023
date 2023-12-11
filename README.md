@@ -1,82 +1,55 @@
-OpenAI Audio Insight API
+OpenAI Audio Analysis API
 
-The OpenAI Audio Insight API allows users to analyze audio files, providing transcriptions and sentiment evaluations. The API leverages OpenAI's powerful language models for accurate and insightful results.
-Getting Started
-Prerequisites
+The OpenAI Audio Analysis API is a powerful tool for transcribing and analyzing audio files using state-of-the-art natural language processing and machine learning models. This API integrates the capabilities of the Whisper ASR model for transcription and the GPT-3.5-turbo model for sentiment analysis.
+Features
 
-Make sure you have the following prerequisites before using the OpenAI Audio Insight API:
-
-    Python installed on your machine
-    OpenAI API key
-
-Installation
-
-    Clone the repository:
-
-    bash
-
-git clone https://github.com/your-username/openai-audio-insight-api.git
-cd openai-audio-insight-api
-
-Install dependencies:
-
-bash
-
-pip install -r requirements.txt
-
-Set your OpenAI API key:
-
-bash
-
-    export OPENAI_API_KEY=your-api-key
+    Audio Transcription: Utilize the Whisper ASR model to transcribe audio files into text.
+    Sentiment Analysis: Evaluate the sentiment of the transcribed text using the GPT-3.5-turbo model.
 
 Usage
 
-    Add your audio files to the resources/ directory.
+    Set Up Your API Key:
+        Obtain an API key from OpenAI and set it in the OPENAI_API_KEY variable.
+
+    Provide Audio Files:
+        Place your audio files in the "resources" folder.
 
     Run the API:
+        Execute the provided script to interactively analyze and transcribe audio files.
+
+    User Interaction:
+        The API prompts the user to select an audio file and displays the transcribed text along with sentiment analysis results.
+
+    Repeat or Exit:
+        Users can choose to analyze additional files or exit the program.
+
+Dependencies
+
+    OpenAI Python Package
+    IPython Widgets
+
+Getting Started
+
+    Install dependencies:
 
     bash
 
-python audio_api.py
+pip install openai ipywidgets
 
-Access the API:
+Set your OpenAI API key:
 
-    Open your browser and go to http://127.0.0.1:5000/
+python
 
-    Use the following curl command for analysis:
+os.environ["OPENAI_API_KEY"] = "YOUR OPENAI_API_KEY"
 
-    bash
+Run the script:
 
-        curl -X POST -H "Content-Type: application/json" -d '{"file_path": "path/to/your/audio/file.mp3"}' http://127.0.0.1:5000/analyze
+bash
 
-API Endpoints
-POST /analyze
+    python your_script_name.py
 
-Analyzes the provided audio file and returns a JSON response with transcription and sentiment evaluation.
-Request Body
+Note
 
-json
-
-{
-  "file_path": "path/to/your/audio/file.mp3"
-}
-
-Response
-
-json
-
-{
-  "transcript": "Transcription of the audio content.",
-  "model_evaluation": "Sentiment evaluation based on the audio content."
-}
-
-Available Audio Files
-
-Upon running the API, it will list all available audio files in the resources/ directory, prompting the user to select a file for analysis.
-User Interaction
-
-The API allows for user interaction, prompting the user to select an audio file, analyzing it, and providing the option to analyze additional files.
-See You Soon!
+Ensure that you comply with OpenAI's usage policies and guidelines while using this API.
 
 Feel free to explore the capabilities of the OpenAI Audio Insight API. If you have any questions or feedback, please let us know. See you SpaceCowboy!
