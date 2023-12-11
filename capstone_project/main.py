@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-from IPython.display import HTML, Audio, display
 
 class ChatGPT:
     """A class to interact with OpenAI's ChatGPT model."""
@@ -16,12 +15,7 @@ class ChatGPT:
         # Set the retrieved API key for the OpenAI library
         self.client = OpenAI(api_key=self.api_key)
 
-    def show_audio_with_controls(self, file_path):
-        display(HTML("<audio controls><source src={} type='audio/mpeg'></audio>".format(file_path)))
-
     def analyze_audio(self, file_path):
-        # Show audio controls
-        self.show_audio_with_controls(file_path)
 
         # Get transcript
         transcript = self.client.audio.transcriptions.create(
